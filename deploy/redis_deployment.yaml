@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: cms-redis
+  namespace: argon
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: cms-redis
+  template:
+    metadata:
+      labels:
+        name: cms-redis
+      annotations:
+        cni.networks: overlay
+    spec:
+      containers:
+      - image: 172.16.1.99/transwarp/redis
+        imagePullPolicy: Always
+        name: cms-redis
+      restartPolicy: Always

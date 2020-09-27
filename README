@@ -1,0 +1,5 @@
+celery flower -A cms_celery --broker=redis://127.0.0.1:6379
+
+celery multi start w3 -A cms_celery -l info
+
+celery -A cms_celery worker  --loglevel=info

@@ -1,0 +1,6 @@
+.idea/
+*.pyc
+./cms/migrations
+*.log
+./cms/*.log
+*.pyc

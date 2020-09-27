@@ -1,0 +1,26 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: cms-celery
+  namespace: argon
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: cms-celery
+  template:
+    metadata:
+      labels:
+        name: cms-celery
+      annotations:
+        cni.networks: overlay
+    spec:
+      containers:
+      - args:
+        - bash
+        - -c
+        - 'cd /root/; bash boot.sh'
+        image: 172.16.1.99/postcommit/cms-celery:argon-1.0
+        imagePullPolicy: Always
+        name: cms-celery
+      restartPolicy: Always

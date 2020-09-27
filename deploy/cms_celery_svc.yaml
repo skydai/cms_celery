@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+     service.alpha.kubernetes.io/tolerate-unready-endpoints: "true"
+  labels:
+     name: cms-celery
+  name: cms-celery-svc
+spec:
+  type: NodePort
+  ports:
+   - name: flask
+     port: 5000
+   - name: flower
+     port: 5555
+  selector:
+     name: cms-celery
